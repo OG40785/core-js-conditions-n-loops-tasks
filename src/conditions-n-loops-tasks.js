@@ -113,8 +113,30 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let result = '';
+  let number = num;
+  while (number >= 10) {
+    result += 'X';
+    number -= 10;
+  }
+  if (number >= 9) {
+    result += 'IX';
+    number -= 9;
+  } else if (number >= 5) {
+    result += 'V';
+    number -= 5;
+  } else if (number >= 4) {
+    result += 'IV';
+    number -= 4;
+  }
+
+  while (number > 0) {
+    result += 'I';
+    number -= 1;
+  }
+
+  return result;
 }
 
 /**
@@ -166,8 +188,15 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let result = -1;
+  for (let index = 0; index < str.length; index += 1) {
+    const element = str[index];
+    if (element === letter) {
+      result = index;
+    }
+  }
+  return result;
 }
 
 /**
@@ -185,8 +214,21 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let result = false;
+  let number = num;
+
+  while (number > 0) {
+    const last = number % 10;
+    if (last === digit) {
+      result = true;
+      break;
+    }
+
+    number = Math.floor(number / 10);
+  }
+
+  return result;
 }
 
 /**
